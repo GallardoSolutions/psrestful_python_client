@@ -186,6 +186,14 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OrderStatusApi->get_order_status_details_v100: %s\n" % e)
+
+# Invoice
+api_instance = psrestful.InvoiceApi(psrestful.ApiClient(configuration))
+try:
+    api_response = api_instance.get_invoices(query_type=4, supplier_code=supplier_code, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InvoiceApi->get_invoices: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
