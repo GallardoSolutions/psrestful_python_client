@@ -69,4 +69,5 @@ target/
 .swagger-codegen/
 git_push.sh
 pp.py
+inventory.py
 .travis.yml

@@ -131,6 +131,52 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling MediaContentApi->get_media_content: %s\n" % e)
+
+try:
+    api_response = api_instance.get_media_date_modified(supplier_code, since=last_week, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling MediaContentApi->get_media_date_modified: %s\n" % e)
+
+# PPC
+api_instance = psrestful.ProductPriceAndConfigurationApi(psrestful.ApiClient(configuration))
+
+# get available locations
+try:
+    api_response = api_instance.get_available_locations(supplier_code, product_id, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProductPriceAndConfigurationApi->get_available_locations: %s\n" % e)
+
+# get available charges
+try:
+    api_response = api_instance.get_available_charges(supplier_code, product_id, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProductPriceAndConfigurationApi->get_available_charges: %s\n" % e)
+
+# get fob points
+try:
+    api_response = api_instance.get_fob_points(supplier_code, product_id, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProductPriceAndConfigurationApi->get_fob_points: %s\n" % e)
+
+# get decoration colors
+try:
+    api_response = api_instance.get_decoration_colors(location_id=6791, supplier_code=supplier_code,
+                                                      product_id=product_id, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProductPriceAndConfigurationApi->get_decoration_colors: %s\n" % e)
+
+# get configuration and pricing
+try:
+    api_response = api_instance.get_configuration_and_pricing('USD', 'MO63114', 'Net',
+                                                              supplier_code, product_id, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProductPriceAndConfigurationApi->get_configuration_and_pricing: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints

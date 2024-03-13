@@ -86,9 +86,6 @@ class GetMediaDateModifiedResponse(object):
         :param error_message: The error_message of this GetMediaDateModifiedResponse.  # noqa: E501
         :type: object
         """
-        if error_message is None:
-            raise ValueError("Invalid value for `error_message`, must not be `None`")  # noqa: E501
-
         self._error_message = error_message
 
     def to_dict(self):
