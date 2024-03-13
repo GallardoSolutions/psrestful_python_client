@@ -123,6 +123,14 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ProductDataApi->get_product: %s\n" % e)
+
+# Get Media Content
+api_instance = psrestful.MediaContentApi(psrestful.ApiClient(configuration))
+try:
+    api_response = api_instance.get_media_content(supplier_code, product_id, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling MediaContentApi->get_media_content: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
