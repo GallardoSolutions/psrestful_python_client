@@ -49,6 +49,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```python
 from __future__ import print_function
+from datetime import datetime, timedelta
 import os
 import psrestful
 from psrestful.rest import ApiException
@@ -79,6 +80,8 @@ x_forwarded_for = None
 x_account_id = None
 product_id_type = None
 environment = 'PROD'
+now = datetime.now()
+last_week = now - timedelta(days=7)
 
 # create an instance of the API class
 api_instance = psrestful.InventoryApi(psrestful.ApiClient(configuration))
@@ -89,15 +92,34 @@ try:
 except ApiException as e:
     print("Exception when calling InventoryApi->get_inventory_by_product_v200: %s\n" % e)
 
-#
+# Product Data    
 api_instance = psrestful.ProductDataApi(psrestful.ApiClient(configuration))
+
+# Get Product Sellable
 try:
-    # Get Product Sellable
-    
-    api_response = api_instance.get_product_selllable_v200(supplier_code, api_version, async_req=False)
+    api_response = api_instance.get_product_sellable_v200(supplier_code, async_req=False)
     pprint(api_response)
-    # Get Product
-    api_response = api_instance.get_product(supplier_code, product_id, api_version, async_req=False)
+except ApiException as e:
+    print("Exception when calling ProductDataApi->get_product_sellable_v200: %s\n" % e)
+
+# Get Product Closeout
+try:
+    api_response = api_instance.get_product_closeout_v200(supplier_code, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProductDataApi->get_product_closeout_v200: %s\n" % e)
+
+# Get Product Modified Since
+try:
+    api_response = api_instance.get_product_date_modified_v200(since=last_week, supplier_code=supplier_code,
+                                                               async_req=False)
+    print(api_response)
+except ApiException as e:
+    print("Exception when calling ProductDataApi->get_product_date_modified_v200: %s\n" % e)
+
+# Get Product
+try:
+    api_response = api_instance.get_product_v200(supplier_code, product_id, async_req=False)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ProductDataApi->get_product: %s\n" % e)

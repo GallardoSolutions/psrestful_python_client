@@ -86,9 +86,6 @@ class ProductDateModifiedResponseV200(object):
         :param service_message_array: The service_message_array of this ProductDateModifiedResponseV200.  # noqa: E501
         :type: object
         """
-        if service_message_array is None:
-            raise ValueError("Invalid value for `service_message_array`, must not be `None`")  # noqa: E501
-
         self._service_message_array = service_message_array
 
     def to_dict(self):
