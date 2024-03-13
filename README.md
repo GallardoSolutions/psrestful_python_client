@@ -177,6 +177,15 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ProductPriceAndConfigurationApi->get_configuration_and_pricing: %s\n" % e)
+
+# Order Status
+api_instance = psrestful.OrderStatusApi(psrestful.ApiClient(configuration))
+try:
+    api_response = api_instance.get_order_status_details_v100(query_type=4, supplier_code=supplier_code,
+                                                              async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling OrderStatusApi->get_order_status_details_v100: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
