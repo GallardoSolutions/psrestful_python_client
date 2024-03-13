@@ -32,6 +32,127 @@ class ProductDataApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def get_all_sellable_product_ids(self, supplier_code, api_version, **kwargs):  # noqa: E501
+        """Get All Sellable Product Ids  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_all_sellable_product_ids(supplier_code, api_version, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param object supplier_code: (required)
+        :param object api_version: (required)
+        :param object body:
+        :param object x_forwarded_for:
+        :param object x_account_id:
+        :param object environment:
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_all_sellable_product_ids_with_http_info(supplier_code, api_version, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_all_sellable_product_ids_with_http_info(supplier_code, api_version, **kwargs)  # noqa: E501
+            return data
+
+    def get_all_sellable_product_ids_with_http_info(self, supplier_code, api_version, **kwargs):  # noqa: E501
+        """Get All Sellable Product Ids  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_all_sellable_product_ids_with_http_info(supplier_code, api_version, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param object supplier_code: (required)
+        :param object api_version: (required)
+        :param object body:
+        :param object x_forwarded_for:
+        :param object x_account_id:
+        :param object environment:
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['supplier_code', 'api_version', 'body', 'x_forwarded_for', 'x_account_id', 'environment']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_all_sellable_product_ids" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'supplier_code' is set
+        if ('supplier_code' not in params or
+                params['supplier_code'] is None):
+            raise ValueError("Missing the required parameter `supplier_code` when calling `get_all_sellable_product_ids`")  # noqa: E501
+        # verify the required parameter 'api_version' is set
+        if ('api_version' not in params or
+                params['api_version'] is None):
+            raise ValueError("Missing the required parameter `api_version` when calling `get_all_sellable_product_ids`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'supplier_code' in params:
+            path_params['supplier_code'] = params['supplier_code']  # noqa: E501
+        if 'api_version' in params:
+            path_params['api_version'] = params['api_version']  # noqa: E501
+
+        query_params = []
+        if 'environment' in params:
+            query_params.append(('environment', params['environment']))  # noqa: E501
+
+        header_params = {}
+        if 'x_forwarded_for' in params:
+            header_params['X-Forwarded-For'] = params['x_forwarded_for']  # noqa: E501
+        if 'x_account_id' in params:
+            header_params['x-account-id'] = params['x_account_id']  # noqa: E501
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['APIKeyHeader', 'HTTPBasic', 'OAuth2PasswordBearer']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v{api_version}/suppliers/{supplier_code}/sellable-product-ids', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def get_product_closeout_v100(self, supplier_code, **kwargs):  # noqa: E501
         """Get Product Closeout V100  # noqa: E501
 
@@ -493,6 +614,232 @@ class ProductDataApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='ProductDateModifiedResponseV200',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_product_sellable_v100(self, supplier_code, **kwargs):  # noqa: E501
+        """Get Sellables V100  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_product_sellable_v100(supplier_code, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param object supplier_code: (required)
+        :param object body:
+        :param object x_forwarded_for:
+        :param object x_account_id:
+        :param object environment:
+        :return: GetProductSellableResponseV100
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_product_sellable_v100_with_http_info(supplier_code, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_product_sellable_v100_with_http_info(supplier_code, **kwargs)  # noqa: E501
+            return data
+
+    def get_product_sellable_v100_with_http_info(self, supplier_code, **kwargs):  # noqa: E501
+        """Get Sellables V100  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_product_sellable_v100_with_http_info(supplier_code, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param object supplier_code: (required)
+        :param object body:
+        :param object x_forwarded_for:
+        :param object x_account_id:
+        :param object environment:
+        :return: GetProductSellableResponseV100
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['supplier_code', 'body', 'x_forwarded_for', 'x_account_id', 'environment']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_product_sellable_v100" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'supplier_code' is set
+        if ('supplier_code' not in params or
+                params['supplier_code'] is None):
+            raise ValueError("Missing the required parameter `supplier_code` when calling `get_product_sellable_v100`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'supplier_code' in params:
+            path_params['supplier_code'] = params['supplier_code']  # noqa: E501
+
+        query_params = []
+        if 'environment' in params:
+            query_params.append(('environment', params['environment']))  # noqa: E501
+
+        header_params = {}
+        if 'x_forwarded_for' in params:
+            header_params['X-Forwarded-For'] = params['x_forwarded_for']  # noqa: E501
+        if 'x_account_id' in params:
+            header_params['x-account-id'] = params['x_account_id']  # noqa: E501
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['APIKeyHeader', 'HTTPBasic', 'OAuth2PasswordBearer']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1.0.0/suppliers/{supplier_code}/sellable-products', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='GetProductSellableResponseV100',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_product_sellable_v200(self, supplier_code, **kwargs):  # noqa: E501
+        """Get Sellables V200  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_product_sellable_v200(supplier_code, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param object supplier_code: (required)
+        :param object body:
+        :param object x_forwarded_for:
+        :param object x_account_id:
+        :param object environment:
+        :return: GetProductSellableResponseV200
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_product_sellable_v200_with_http_info(supplier_code, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_product_sellable_v200_with_http_info(supplier_code, **kwargs)  # noqa: E501
+            return data
+
+    def get_product_sellable_v200_with_http_info(self, supplier_code, **kwargs):  # noqa: E501
+        """Get Sellables V200  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_product_sellable_v200_with_http_info(supplier_code, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param object supplier_code: (required)
+        :param object body:
+        :param object x_forwarded_for:
+        :param object x_account_id:
+        :param object environment:
+        :return: GetProductSellableResponseV200
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['supplier_code', 'body', 'x_forwarded_for', 'x_account_id', 'environment']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_product_sellable_v200" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'supplier_code' is set
+        if ('supplier_code' not in params or
+                params['supplier_code'] is None):
+            raise ValueError("Missing the required parameter `supplier_code` when calling `get_product_sellable_v200`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'supplier_code' in params:
+            path_params['supplier_code'] = params['supplier_code']  # noqa: E501
+
+        query_params = []
+        if 'environment' in params:
+            query_params.append(('environment', params['environment']))  # noqa: E501
+
+        header_params = {}
+        if 'x_forwarded_for' in params:
+            header_params['X-Forwarded-For'] = params['x_forwarded_for']  # noqa: E501
+        if 'x_account_id' in params:
+            header_params['x-account-id'] = params['x_account_id']  # noqa: E501
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['APIKeyHeader', 'HTTPBasic', 'OAuth2PasswordBearer']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v2.0.0/suppliers/{supplier_code}/sellable-products', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='GetProductSellableResponseV200',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

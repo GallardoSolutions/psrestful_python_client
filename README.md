@@ -49,14 +49,16 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```python
 from __future__ import print_function
-import time
+import os
 import psrestful
 from psrestful.rest import ApiException
 from pprint import pprint
 
+PSRESTFUL_API_KEY = os.environ.get('PSRESTFUL_API_KEY')   # YOUR_API_KEY
+
 # Configure API key authorization: APIKeyHeader
 configuration = psrestful.Configuration()
-configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
+configuration.api_key['X-API-Key'] = PSRESTFUL_API_KEY
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 
 # configuration.api_key_prefix['X-API-Key'] = 'Bearer'# Configure HTTP basic authorization: HTTPBasic
@@ -68,23 +70,37 @@ configuration.password = 'YOUR_PASSWORD'
 configuration = psrestful.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = psrestful.InventoryApi(psrestful.ApiClient(configuration))
-supplier_code = None
-api_version = None
-product_id = None
+#
+supplier_code = 'Ariel'
+api_version = '2.0.0'
+product_id = 'ALB-BT24'
 body = None
 x_forwarded_for = None
 x_account_id = None
 product_id_type = None
 environment = 'PROD'
 
+# create an instance of the API class
+api_instance = psrestful.InventoryApi(psrestful.ApiClient(configuration))
 try:
-    # Get Filter Values
+    # Get Inventory Levels
     api_response = api_instance.get_inventory_by_product_v200(supplier_code, product_id, async_req=False)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InventoryApi->get_inventory_by_product_v200: %s\n" % e)
+
+#
+api_instance = psrestful.ProductDataApi(psrestful.ApiClient(configuration))
+try:
+    # Get Product Sellable
+    
+    api_response = api_instance.get_product_selllable_v200(supplier_code, api_version, async_req=False)
+    pprint(api_response)
+    # Get Product
+    api_response = api_instance.get_product(supplier_code, product_id, api_version, async_req=False)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProductDataApi->get_product: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
